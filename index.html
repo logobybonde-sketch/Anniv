@@ -4,295 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Anniversary</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #ff4d6d; 
-            --bg-color: #121212;      
-            --card-bg: #1e1e1e;       
-            --text-color: #f8f9fa;     
-            --text-muted: #a0a0a0;     
-        }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* ===== HALAMAN PEMBUKA (COVER) ===== */
-        .cover-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            text-align: center;
-        }
-
-        .cover-screen h2 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            text-shadow: 0 4px 10px rgba(255, 77, 109, 0.2);
-        }
-
-        .open-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
-            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-        }
-
-        .open-btn:hover {
-            transform: scale(1.05);
-            background-color: #ff758f;
-            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.6);
-        }
-
-        .cover-screen.fade-out {
-            opacity: 0;
-            transform: translateY(-100vh);
-            pointer-events: none;
-        }
-
-        /* ===== TOMBOL MUSIK KONTROL ===== */
-        .music-control {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(30, 30, 30, 0.8);
-            border: 1px solid #3a3a3a;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
-        }
-
-        /* ===== KONTEN UTAMA ===== */
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: var(--card-bg);
-            margin: 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 40px;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
-        }
-
-        .container.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .header-img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-bottom: 2px solid #2a2a2a;
-        }
-
-        .content {
-            padding: 30px 20px;
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            color: var(--primary-color);
-            font-size: 2.8rem;
-            margin-bottom: 5px;
-        }
-
-        .date {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-top: 0;
-            margin-bottom: 35px;
-            letter-spacing: 1px;
-        }
-
-        .message p {
-            line-height: 1.9;
-            font-size: 1.05rem;
-            margin: 25px 0;
-            color: #e0e0e0;
-            padding: 0 15px;
-            text-align: center;
-        }
-
-        /* ===== STYLE RANDOM SCRAPBOOK / COLLAGE FOTO ===== */
-        .random-collage {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 35px 0;
-            padding: 0 10px;
-        }
-
-        /* Bikin frame foto ala polaroid/kliping random */
-        .random-collage img {
-            width: 42%;
-            min-width: 130px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 4px solid #fff; /* Bingkai putih estetik kontras dengan background hitam */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease, z-index 0.3s;
-        }
-
-        /* Trik CSS posisi kemiringan acak (random rotate) */
-        .random-collage img:nth-child(odd) {
-            transform: rotate(-4deg) translateY(5px);
-        }
-        .random-collage img:nth-child(even) {
-            transform: rotate(5deg) translateY(-5px);
-        }
-        .random-collage img:nth-child(3n) {
-            transform: rotate(3deg) scale(1.02);
-        }
-        .random-collage img:nth-child(4n) {
-            transform: rotate(-6deg);
-        }
-
-        /* Efek interaktif pas di-hover/sentuh */
-        .random-collage img:hover {
-            transform: scale(1.1) rotate(0deg);
-            z-index: 10;
-            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.4);
-        }
-
-        .footer-note {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin-top: 50px;
-        }
-    </style>
+    <!-- Google Fonts untuk font tulisan sambung estetik -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- TAG AUDIO UNTUK BACKSOUND -->
     <audio id="mySong" loop>
         <source src="./music.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- TOMBOL KONTROL MUSIK POJOK KANAN ATAS -->
     <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
-    <div class="cover-screen" id="coverScreen">
-        <h2>Untuk Istriku</h2>
-        <button class="open-btn" onclick="bukaSurat()">Klik Disini</button>
+    <!-- BACKGROUND BINTANG BAWAAN KAMU -->
+    <div class="stars"></div>
+
+    <!-- HALAMAN AWAL (OPENING SURPRISE) -->
+    <div id="opening">
+        <h1>Untuk Istriku</h1>
+        <button onclick="bukaSurat()">Klik Disini</button>
     </div>
 
-    <div class="container" id="mainContainer">
-        <img src="./ayu.jpg" alt="Foto Utama Ayu" class="header-img">
+    <!-- KONTEN UTAMA (SURAT & FOTO KELUARGA) -->
+    <div class="container" id="mainContainer" style="display: none;">
+        <!-- Foto Ayu Bulat Emas Bawaan Kamu -->
+        <img src="./ayu.jpg" alt="Foto Utama Ayu" class="foto">
 
-        <div class="content">
-            <h1>❤️ Happy Anniversary ❤️</h1>
-            <p class="date">27 Juni 2026</p>
+        <h1 class="main-title">❤️ Happy Anniversary ❤️</h1>
+        <p class="date">27 Juni 2026</p>
 
-            <div class="message">
-                <p>Hallo Istriku,</p>
-                
-                <i>I don't know how to explain how lucky I am to have you in my life.</i></p>
-                
-                <p>Thank you for being my home, my safe place, and my favorite person.</p>
-                
-                <p>Kamu tuh bukan cuma istri aku, tapi partner hidup yang selalu nemenin aku. Tempat cerita, tempat balik, tempat dimana aku bisa jadi diri sendiri ❤️</p>
+        <!-- Isi Surat Mengetik / Scrapbook Flow -->
+        <div class="card">
+            <p>Hallo Istriku,</p>
+            
+            <p>I don't know how to explain how lucky I am to have you in my life</p>
+            
+            <p>Thank you for being my home, my safe place, and my favorite person.</p>
+            
+            <p>Kamu tuh bukan cuma istri aku, tapi partner hidup yang selalu nemenin aku. Tempat cerita, tempat balik, tempat dimana aku bisa jadi diri sendiri ❤️</p>
 
-                <div class="random-collage">
-                    <img src="./pacaran1.jpg" alt="Momen Kita">
-                    <img src="./pacaran2.jpg" alt="Momen Kita">
-                    <img src="./pacaran3.jpg" alt="Momen Kita">
-                </div>
-                
-                <p>Kita udah banyak ngelewatin segala hal. Ada ketawa, ada capek, ada salah paham, aya drama jelasna mah nya Yang 😂</p>
-                
-                <p>Kadang kita suka keras kepala, walaupun sebenernya yang keras kepala itu aku. Kadang kita masih meributkan hal yang gak penting, jelas kalau itu kamu kan? 🤣 tapi at the end... Kita masih tetap memilih bertahan satu sama lain.</p>
+            <!-- Kumpulan Foto 1 (Pacaran - Random Scrapbook) -->
+            <div class="random-collage">
+                <img src="./pacaran1.jpg" alt="Momen Kita">
+                <img src="./pacaran2.jpg" alt="Momen Kita">
+                <img src="./pacaran3.jpg" alt="Momen Kita">
+            </div>
+            
+            <p>Kita udah banyak ngelewatin segala hal. Ada ketawa, ada capek, ada salah paham, aya drama jelasna mah nya Yang 😂</p>
+            
+            <p>Kadang kita suka keras kepala, walaupun sebenernya yang keras kepala itu aku. Kadang kita masih meributkan hal yang gak penting, jelas kalau itu kamu kan? 🤣 tapi at the end... Kita masih tetap memilih bertahan satu sama lain.</p>
 
-                <div class="random-collage">
-                    <img src="./prewed1.jpg" alt="Momen Kita">
-                    <img src="./prewed2.jpg" alt="Momen Kita">
-                    <img src="./prewed3.jpg" alt="Momen Kita">
-                    <img src="./prewed4.jpg" alt="Momen Kita">
-                </div>
-                
-                <p>I know I'm not perfect. Kadang ngeselin, kadang gak peka, kadang loba tingkah, kadang tara mandi (btw, tara mandi teh biar hemat air bos). 🤫</p>
-                
-                <p>But one thing is sure...<br>
-                I will always love you and choose you. Not only today, but everyday.</p>
+            <!-- Kumpulan Foto 2 (Prewed - Random Scrapbook) -->
+            <div class="random-collage">
+                <img src="./prewed1.jpg" alt="Momen Kita">
+                <img src="./prewed2.jpg" alt="Momen Kita">
+                <img src="./prewed3.jpg" alt="Momen Kita">
+                <img src="./prewed4.jpg" alt="Momen Kita">
+            </div>
+            
+            <p>I know I'm not perfect. Kadang ngeselin, kadang gak peka, kadang loba tingkah, kadang tara mandi (btw, tara mandi teh biar hemat air bos). 🤫</p>
+            
+            <p>But one thing is sure...<br>
+            I will always love you and choose you. Not only today, but everyday.</p>
 
-                <div class="random-collage">
-                    <img src="./wedding1.jpg" alt="Momen Kita">
-                    <img src="./wedding2.jpg" alt="Momen Kita">
-                    <img src="./wedding3.jpg" alt="Momen Kita">
-                </div>
-                
-                <p>Someday kita bakal balik lagi liat perjalanan ini, terus ketawa dan ngomong:<br>
+            <!-- Kumpulan Foto 3 (Wedding - Random Scrapbook) -->
+            <div class="random-collage">
+                <img src="./wedding1.jpg" alt="Momen Kita">
+                <img src="./wedding2.jpg" alt="Momen Kita">
+                <img src="./wedding3.jpg" alt="Momen Kita">
+            </div>
+            
+            <p>Someday kita bakal balik lagi liat perjalanan ini, terus ketawa dan ngomong:<br>
                 "Gila ya... ternyata kita kuat oge, best lah kita bisa sampai sajauh ieu." ❤️</p>
-                
-                <p>Thank you for being Ayana's mom.<br>
-                Thank you for being my wife, my best friend, and my forever partner.<br>
-                Thank you for everything, Mama.</p>
+            
+            <p>Thank you for being Ayana's mom.<br>
+            Thank you for being my wife, my best friend, and my forever partner.<br>
+            Thank you for everything, Mama.</p>
 
-                <div class="random-collage">
-                    <img src="./after1.jpg" alt="Momen Kita">
-                    <img src="./after2.jpg" alt="Momen Kita">
-                    <img src="./after3.jpg" alt="Momen Kita">
-                </div>
+            <!-- Kumpulan Foto 4 (After Nikah - Random Scrapbook) -->
+            <div class="random-collage">
+                <img src="./after1.jpg" alt="Momen Kita">
+                <img src="./after2.jpg" alt="Momen Kita">
+                <img src="./after3.jpg" alt="Momen Kita">
             </div>
 
             <div class="footer-note">
-                <p>Love you Mama ❤️</p>
-                <p style="font-size: 1.1rem; font-family: 'Quicksand', sans-serif; color: var(--text-muted);">
+                <p>I love you Mama ❤️</p>
+                <p style="font-size: 15px; font-family: 'Quicksand', sans-serif; color: #a0a0a0; text-align: center;">
                     Let's take another roller coaster together
                 </p>
             </div>
-
         </div>
     </div>
 
+    <!-- SCRIPT JAVASCRIPT LOGIC -->
     <script>
         var lagu = document.getElementById("mySong");
         var tombolMusik = document.getElementById("musicBtn");
 
         function bukaSurat() {
-            document.getElementById('coverScreen').classList.add('fade-out');
-            document.getElementById('mainContainer').classList.add('show');
+            // Sembunyikan halaman opening
+            document.getElementById('opening').style.display = 'none';
+            // Munculkan container utama
+            document.getElementById('mainContainer').style.display = 'block';
             
+            // Tampilkan tombol musik dan putar lagunya
             tombolMusik.style.display = "block";
             lagu.play().catch(function(error) {
-                console.log("Autoplay ditolak browser.");
+                console.log("Autoplay ditolak oleh browser.");
             });
         }
 
@@ -306,6 +127,5 @@
             }
         }
     </script>
-
 </body>
 </html>
