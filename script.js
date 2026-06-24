@@ -1,7 +1,7 @@
-function love(){
+function openLove(){
 
-document.getElementById("text").innerHTML =
+document.getElementById("opening").style.display="none";
 
-"❤️ Forever yours, Ayu. You are my favorite person ❤️";
+document.getElementById("message").style.display="block";
 
 }
