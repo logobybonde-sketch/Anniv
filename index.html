@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>❤️ Happy Anniversary ❤️</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #e63946;
-            --bg-color: #fff5f5;
-            --text-color: #2b2d42;
-            --card-bg: #ffffff;
+            --primary-color: #ff4d6d; /* Warna pink/merah yang lebih terang biar pop di background hitam */
+            --bg-color: #121212;      /* Hitam pekat untuk background utama */
+            --card-bg: #1e1e1e;       /* Hitam abu-abu sedikit terang untuk kotak konten */
+            --text-color: #f8f9fa;     /* Putih soft untuk teks utama */
+            --text-muted: #a0a0a0;     /* Abu-abu untuk teks sekunder/tanggal */
         }
 
         body {
@@ -26,22 +28,84 @@
             min-height: 100vh;
         }
 
+        /* ===== HALAMAN PEMBUKA (COVER) ===== */
+        .cover-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            text-align: center;
+        }
+
+        .cover-screen h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-shadow: 0 4px 10px rgba(255, 77, 109, 0.2);
+        }
+
+        .open-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .open-btn:hover {
+            transform: scale(1.05);
+            background-color: #ff758f;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.6);
+        }
+
+        /* Menghilangkan cover setelah diklik */
+        .cover-screen.fade-out {
+            opacity: 0;
+            transform: translateY(-100vh);
+            pointer-events: none;
+        }
+
+        /* ===== KONTEN UTAMA (SURAT & FOTO) ===== */
         .container {
             width: 100%;
             max-width: 600px;
             background: var(--card-bg);
             margin: 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             overflow: hidden;
             text-align: center;
             padding-bottom: 40px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+        }
+
+        /* Muncul pelan-pelan setelah tombol diklik */
+        .container.show {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .header-img {
             width: 100%;
             max-height: 400px;
             object-fit: cover;
+            border-bottom: 2px solid #2a2a2a;
         }
 
         .content {
@@ -51,47 +115,49 @@
         h1 {
             font-family: 'Dancing Script', cursive;
             color: var(--primary-color);
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(255, 77, 109, 0.2);
         }
 
         .date {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #8d99ae;
+            color: var(--text-muted);
             margin-top: 0;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
         }
 
         .message {
-            line-height: 1.8;
+            line-height: 1.9;
             font-size: 1.05rem;
-            margin-bottom: 40px;
+            margin-bottom: 5px;
             text-align: center;
+            color: #e0e0e0;
         }
 
-        /* Style untuk Galeri Foto Perjalanan */
+        /* Style Galeri Foto */
         .gallery-section {
-            margin-top: 40px;
+            margin-top: 45px;
             text-align: left;
             padding: 0 15px;
         }
 
         .gallery-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--primary-color);
-            border-bottom: 2px solid #ffe3e3;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
+            border-bottom: 2px solid #3a3a3a;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
         }
 
-        /* Grid foto responsive */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         .photo-grid img {
@@ -99,34 +165,45 @@
             height: 140px;
             object-fit: cover;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: brightness(0.9);
         }
 
         .photo-grid img:hover {
             transform: scale(1.05);
+            filter: brightness(1.1);
         }
 
         .footer-note {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--primary-color);
-            margin-top: 40px;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- HALAMAN DEPAN / TOMBOL SURPRISE -->
+    <div class="cover-screen" id="coverScreen">
+        <h2>Untuk Istriku</h2>
+        <button class="open-btn" onclick="bukaSurat()">Klik Disini</button>
+    </div>
+
+    <!-- KONTEN UTAMA -->
+    <div class="container" id="mainContainer">
+        <!-- Foto Utama (ayu.jpg) -->
         <img src="./ayu.jpg" alt="Foto Utama Ayu" class="header-img">
 
         <div class="content">
             <h1>❤️ Happy Anniversary ❤️</h1>
             <p class="date">27 Juni 2026</p>
 
+            <!-- Isi Surat -->
             <div class="message">
                 <p>Hallo Istriku,</p>
-                <p>Hi sayang,<br>
+                
                 <i>I don't know how to explain how lucky I am to have you in my life.</i></p>
                 
                 <p>Thank you for being my home, my safe place, and my favorite person.</p>
@@ -150,8 +227,11 @@
                 Thank you for everything, Mama.</p>
             </div>
 
+            <!-- ================= GALERI FOTO ================= -->
+            
+            <!-- 1. Jaman Pacaran (3 Foto) -->
             <div class="gallery-section">
-                <div class="gallery-title">Our Beginnings </div>
+                <div class="gallery-title">Our Beginnings (Jaman Pacaran)</div>
                 <div class="photo-grid">
                     <img src="./images/pacaran1.jpg" alt="Pacaran 1">
                     <img src="./images/pacaran2.jpg" alt="Pacaran 2">
@@ -159,8 +239,9 @@
                 </div>
             </div>
 
+            <!-- 2. Prewedding (4 Foto) -->
             <div class="gallery-section">
-                <div class="gallery-title">The Next Step </div>
+                <div class="gallery-title">The Next Step (Prewedding)</div>
                 <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr);">
                     <img src="./images/prewed1.jpg" alt="Prewed 1">
                     <img src="./images/prewed2.jpg" alt="Prewed 2">
@@ -169,8 +250,9 @@
                 </div>
             </div>
 
+            <!-- 3. Wedding (3 Foto) -->
             <div class="gallery-section">
-                <div class="gallery-title">Our Big Day </div>
+                <div class="gallery-title">Our Big Day (Wedding)</div>
                 <div class="photo-grid">
                     <img src="./images/wedding1.jpg" alt="Wedding 1">
                     <img src="./images/wedding2.jpg" alt="Wedding 2">
@@ -178,8 +260,9 @@
                 </div>
             </div>
 
+            <!-- 4. After Nikah (3 Foto) -->
             <div class="gallery-section">
-                <div class="gallery-title">Happily Ever After </div>
+                <div class="gallery-title">Happily Ever After (After Nikah)</div>
                 <div class="photo-grid">
                     <img src="./images/after1.jpg" alt="After Nikah 1">
                     <img src="./images/after2.jpg" alt="After Nikah 2">
@@ -187,15 +270,25 @@
                 </div>
             </div>
 
+            <!-- =============================================== -->
+
             <div class="footer-note">
                 <p>Love you Mama ❤️</p>
-                <p style="font-size: 1.1rem; font-family: 'Quicksand', sans-serif; color: #8d99ae;">
+                <p style="font-size: 1.1rem; font-family: 'Quicksand', sans-serif; color: var(--text-muted);">
                     Let's take another roller coaster together 🎢
                 </p>
             </div>
 
         </div>
     </div>
+
+    <!-- LOGIK JAVASCRIPT UNTUK MEMBUKA KONTEN -->
+    <script>
+        function bukaSurat() {
+            document.getElementById('coverScreen').classList.add('fade-out');
+            document.getElementById('mainContainer').classList.add('show');
+        }
+    </script>
 
 </body>
 </html>
