@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❤️ Happy Anniversary ❤️</title>
+    <title>Happy Anniversary</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -77,6 +77,22 @@
             pointer-events: none;
         }
 
+        /* ===== TOMBOL MUSIK KONTROL ===== */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #3a3a3a;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+
         /* ===== KONTEN UTAMA ===== */
         .container {
             width: 100%;
@@ -114,7 +130,6 @@
             color: var(--primary-color);
             font-size: 2.8rem;
             margin-bottom: 5px;
-            text-shadow: 0 2px 5px rgba(255, 77, 109, 0.2);
         }
 
         .date {
@@ -126,49 +141,48 @@
             letter-spacing: 1px;
         }
 
-        .message {
+        .message p {
             line-height: 1.9;
             font-size: 1.05rem;
-            margin-bottom: 5px;
-            text-align: center;
+            margin: 20px 0;
             color: #e0e0e0;
+            padding: 0 10px;
         }
 
-        /* Style Galeri Foto */
-        .gallery-section {
-            margin-top: 45px;
-            text-align: left;
-            padding: 0 15px;
+        /* ===== STYLE GRID FOTO DI TENGAH TEKS ===== */
+        .inline-gallery {
+            margin: 30px 0;
+            padding: 0 10px;
         }
 
-        .gallery-title {
+        .inline-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: var(--primary-color);
-            border-bottom: 2px solid #3a3a3a;
-            padding-bottom: 8px;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
+            text-align: left;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 10px;
         }
 
         .photo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin-bottom: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
         }
 
         .photo-grid img {
             width: 100%;
-            height: 140px;
+            height: 135px;
             object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: brightness(0.9);
         }
 
         .photo-grid img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
             filter: brightness(1.1);
         }
 
@@ -182,9 +196,15 @@
 </head>
 <body>
 
+    <audio id="mySong" loop>
+        <source src="./music.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
     <div class="cover-screen" id="coverScreen">
         <h2>Untuk Istriku</h2>
-        <button class="open-btn" onclick="bukaSurat()">Klik Disini!</button>
+        <button class="open-btn" onclick="bukaSurat()">Klik Disini</button>
     </div>
 
     <div class="container" id="mainContainer">
@@ -196,21 +216,49 @@
 
             <div class="message">
                 <p>Hallo Istriku,</p>
-                
+
                 <i>I don't know how to explain how lucky I am to have you in my life.</i></p>
                 
                 <p>Thank you for being my home, my safe place, and my favorite person.</p>
                 
                 <p>Kamu tuh bukan cuma istri aku, tapi partner hidup yang selalu nemenin aku. Tempat cerita, tempat balik, tempat dimana aku bisa jadi diri sendiri ❤️</p>
+
+                <div class="inline-gallery">
+                    <div class="inline-title">Inget pas jaman ini? (Our Beginnings)</div>
+                    <div class="photo-grid">
+                        <img src="./pacaran1.jpg" alt="Pacaran 1">
+                        <img src="./pacaran2.jpg" alt="Pacaran 2">
+                        <img src="./pacaran3.jpg" alt="Pacaran 3">
+                    </div>
+                </div>
                 
                 <p>Kita udah banyak ngelewatin segala hal. Ada ketawa, ada capek, ada salah paham, aya drama jelasna mah nya Yang 😂</p>
                 
                 <p>Kadang kita suka keras kepala, walaupun sebenernya yang keras kepala itu aku. Kadang kita masih meributkan hal yang gak penting, jelas kalau itu kamu kan? 🤣 tapi at the end... Kita masih tetap memilih bertahan satu sama lain.</p>
+
+                <div class="inline-gallery">
+                    <div class="inline-title">Satu langkah lebih dekat...</div>
+                    <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <img src="./prewed1.jpg" alt="Prewed 1">
+                        <img src="./prewed2.jpg" alt="Prewed 2">
+                        <img src="./prewed3.jpg" alt="Prewed 3">
+                        <img src="./prewed4.jpg" alt="Prewed 4">
+                    </div>
+                </div>
                 
                 <p>I know I'm not perfect. Kadang ngeselin, kadang gak peka, kadang loba tingkah, kadang tara mandi (btw, tara mandi teh biar hemat air bos). 🤫</p>
                 
                 <p>But one thing is sure...<br>
                 I will always love you and choose you. Not only today, but everyday.</p>
+
+                <div class="inline-gallery">
+                    <div class="inline-title">Hari terbaik dalam hidupku (Our Big Day)</div>
+                    <div class="photo-grid">
+                        <img src="./wedding1.jpg" alt="Wedding 1">
+                        <img src="./wedding2.jpg" alt="Wedding 2">
+                        <img src="./wedding3.jpg" alt="Wedding 3">
+                    </div>
+                </div>
                 
                 <p>Someday kita bakal balik lagi liat perjalanan ini, terus ketawa dan ngomong:<br>
                 "Gila ya... ternyata kita kuat oge, best lah kita bisa sampai sajauh ieu." ❤️</p>
@@ -218,42 +266,14 @@
                 <p>Thank you for being Ayana's mom.<br>
                 Thank you for being my wife, my best friend, and my forever partner.<br>
                 Thank you for everything, Mama.</p>
-            </div>
 
-            <div class="gallery-section">
-                <div class="gallery-title">Our Beginnings</div>
-                <div class="photo-grid">
-                    <img src="./pacaran1.jpg" alt="Pacaran 1">
-                    <img src="./pacaran2.jpg" alt="Pacaran 2">
-                    <img src="./pacaran3.jpg" alt="Pacaran 3">
-                </div>
-            </div>
-
-            <div class="gallery-section">
-                <div class="gallery-title">The Next Step</div>
-                <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr);">
-                    <img src="./prewed1.jpg" alt="Prewed 1">
-                    <img src="./prewed2.jpg" alt="Prewed 2">
-                    <img src="./prewed3.jpg" alt="Prewed 3">
-                    <img src="./prewed4.jpg" alt="Prewed 4">
-                </div>
-            </div>
-
-            <div class="gallery-section">
-                <div class="gallery-title">Our Big Day</div>
-                <div class="photo-grid">
-                    <img src="./wedding1.jpg" alt="Wedding 1">
-                    <img src="./wedding2.jpg" alt="Wedding 2">
-                    <img src="./wedding3.jpg" alt="Wedding 3">
-                </div>
-            </div>
-
-            <div class="gallery-section">
-                <div class="gallery-title">Happily Ever After</div>
-                <div class="photo-grid">
-                    <img src="./after1.jpg" alt="After Nikah 1">
-                    <img src="./after2.jpg" alt="After Nikah 2">
-                    <img src="./after3.jpg" alt="After Nikah 3">
+                <div class="inline-gallery">
+                    <div class="inline-title">Dan perjalanan kita masih panjang... ✨</div>
+                    <div class="photo-grid">
+                        <img src="./after1.jpg" alt="After Nikah 1">
+                        <img src="./after2.jpg" alt="After Nikah 2">
+                        <img src="./after3.jpg" alt="After Nikah 3">
+                    </div>
                 </div>
             </div>
 
@@ -268,9 +288,27 @@
     </div>
 
     <script>
+        var lagu = document.getElementById("mySong");
+        var tombolMusik = document.getElementById("musicBtn");
+
         function bukaSurat() {
             document.getElementById('coverScreen').classList.add('fade-out');
             document.getElementById('mainContainer').classList.add('show');
+            
+            tombolMusik.style.display = "block";
+            lagu.play().catch(function(error) {
+                console.log("Autoplay ditolak browser.");
+            });
+        }
+
+        function toggleMusic() {
+            if (lagu.paused) {
+                lagu.play();
+                tombolMusik.innerText = "🎵";
+            } else {
+                lagu.pause();
+                tombolMusik.innerText = "🔇";
+            }
         }
     </script>
 
