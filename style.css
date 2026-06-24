@@ -118,23 +118,25 @@ margin-top:20px;
 
 }
 
-/* Judul */
+/* judul */
 
 h1{
 
-font-size:32px;
+font-size:45px;
 
 color:white;
 
-line-height:1.3;
+}
+
+#message h1{
+
+font-size:32px;
 
 }
 
 h2{
 
 color:#d4af37;
-
-line-height:1.5;
 
 }
 
