@@ -4,48 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Anniversary</title>
-    <!-- Google Fonts untuk font tulisan sambung estetik -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&family=Quicksand:wght=400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Tombol Musik Kontrol */
+        .music-control {
+            top: 20px;
+        }
+        
+        /* Tombol Auto Scroll di bawah tombol musik */
+        .scroll-control {
+            position: fixed;
+            top: 75px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #d4af37;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 0 15px rgba(212,175,55,0.4);
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+        .scroll-control:hover {
+            transform: scale(1.1);
+        }
+
+        /* TOMBOL KADO DI BAWAH (Warna emas mewah senada) */
+        .gift-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: none;
+            background: #d4af37 !important;
+            color: #000 !important;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(212,175,55,0.5) !important;
+            transition: .3s;
+            display: inline-block;
+            width: 85%;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .gift-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(212,175,55,0.8) !important;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- TAG AUDIO UNTUK BACKSOUND -->
+    <!-- TAG AUDIO -->
     <audio id="mySong" loop>
         <source src="./music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- TOMBOL KONTROL MUSIK POJOK KANAN ATAS -->
+    <!-- TOMBOL MUSIK -->
     <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
-    <!-- BACKGROUND BINTANG BAWAAN KAMU -->
+    <!-- TOMBOL AUTO SCROLL -->
+    <button class="scroll-control" id="scrollBtn" onclick="toggleAutoScroll()" title="Auto Scroll">🔽</button>
+
+    <!-- BACKGROUND BINTANG -->
     <div class="stars"></div>
 
-    <!-- HALAMAN AWAL (OPENING SURPRISE) -->
+    <!-- HALAMAN AWAL (OPENING) -->
     <div id="opening">
         <h1>Untuk Istriku</h1>
-        <button onclick="bukaSurat()">Klik Disini</button>
+        
+        <button onclick="bukaSurat()">Tolong Diklik Bos</button>
     </div>
 
-    <!-- KONTEN UTAMA (SURAT & FOTO KELUARGA) -->
+    <!-- KONTEN UTAMA -->
     <div class="container" id="mainContainer" style="display: none;">
-        <!-- Foto Ayu Bulat Emas Bawaan Kamu -->
         <img src="./ayu.jpg" alt="Foto Utama Ayu" class="foto">
 
         <h1 class="main-title">❤️ Happy Anniversary ❤️</h1>
         <p class="date">27 Juni 2026</p>
 
-        <!-- Isi Surat Mengetik / Scrapbook Flow -->
         <div class="card">
             <p>Hallo Istriku,</p>
             
-            <p>I don't know how to explain how lucky I am to have you in my life</p>
+            <p>I don't know how to explain how lucky I am to have you in my life.</p>
             
             <p>Thank you for being my home, my safe place, and my favorite person.</p>
             
             <p>Kamu tuh bukan cuma istri aku, tapi partner hidup yang selalu nemenin aku. Tempat cerita, tempat balik, tempat dimana aku bisa jadi diri sendiri ❤️</p>
 
-            <!-- Kumpulan Foto 1 (Pacaran - Random Scrapbook) -->
+            <!-- Kumpulan Foto 1 -->
             <div class="random-collage">
                 <img src="./pacaran1.jpg" alt="Momen Kita">
                 <img src="./pacaran2.jpg" alt="Momen Kita">
@@ -56,7 +107,7 @@
             
             <p>Kadang kita suka keras kepala, walaupun sebenernya yang keras kepala itu aku. Kadang kita masih meributkan hal yang gak penting, jelas kalau itu kamu kan? 🤣 tapi at the end... Kita masih tetap memilih bertahan satu sama lain.</p>
 
-            <!-- Kumpulan Foto 2 (Prewed - Random Scrapbook) -->
+            <!-- Kumpulan Foto 2 -->
             <div class="random-collage">
                 <img src="./prewed1.jpg" alt="Momen Kita">
                 <img src="./prewed2.jpg" alt="Momen Kita">
@@ -69,7 +120,7 @@
             <p>But one thing is sure...<br>
             I will always love you and choose you. Not only today, but everyday.</p>
 
-            <!-- Kumpulan Foto 3 (Wedding - Random Scrapbook) -->
+            <!-- Kumpulan Foto 3 -->
             <div class="random-collage">
                 <img src="./wedding1.jpg" alt="Momen Kita">
                 <img src="./wedding2.jpg" alt="Momen Kita">
@@ -83,7 +134,7 @@
             Thank you for being my wife, my best friend, and my forever partner.<br>
             Thank you for everything, Mama.</p>
 
-            <!-- Kumpulan Foto 4 (After Nikah - Random Scrapbook) -->
+            <!-- Kumpulan Foto 4 -->
             <div class="random-collage">
                 <img src="./after1.jpg" alt="Momen Kita">
                 <img src="./after2.jpg" alt="Momen Kita">
@@ -91,29 +142,36 @@
             </div>
 
             <div class="footer-note">
-                <p>I love you Mama ❤️</p>
-                <p style="font-size: 15px; font-family: 'Quicksand', sans-serif; color: #a0a0a0; text-align: center;">
+                <p>I love you, Mama</p>
+                <p style="font-size: 15px; font-family: 'Quicksand', sans-serif; color: #a0a0a0; text-align: center; margin-bottom: 20px;">
                     Let's take another roller coaster together
                 </p>
+                
+                <!-- TOMBOL EMAS HANYA POP-UP -->
+                <button onclick="kejutanKopi()" class="gift-btn">
+                    Klik Kalau Udah Beres Baca
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT JAVASCRIPT LOGIC -->
+    <!-- LOGIC SCRIPT JAVASCRIPT -->
     <script>
         var lagu = document.getElementById("mySong");
         var tombolMusik = document.getElementById("musicBtn");
+        var tombolScroll = document.getElementById("scrollBtn");
+        var scrollInterval;
+        var isScrolling = false;
 
         function bukaSurat() {
-            // Sembunyikan halaman opening
             document.getElementById('opening').style.display = 'none';
-            // Munculkan container utama
             document.getElementById('mainContainer').style.display = 'block';
             
-            // Tampilkan tombol musik dan putar lagunya
             tombolMusik.style.display = "block";
+            tombolScroll.style.display = "block";
+            
             lagu.play().catch(function(error) {
-                console.log("Autoplay ditolak oleh browser.");
+                console.log("Autoplay ditolak.");
             });
         }
 
@@ -125,6 +183,35 @@
                 lagu.pause();
                 tombolMusik.innerText = "🔇";
             }
+        }
+
+        function toggleAutoScroll() {
+            if (!isScrolling) {
+                isScrolling = true;
+                tombolScroll.innerText = "⏸️";
+                tombolScroll.style.background = "rgba(212,175,55,0.2)";
+                
+                scrollInterval = setInterval(function() {
+                    window.scrollBy(0, 1);
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        stopAutoScroll();
+                    }
+                }, 30); 
+            } else {
+                stopAutoScroll();
+            }
+        }
+
+        function stopAutoScroll() {
+            isScrolling = false;
+            clearInterval(scrollInterval);
+            tombolScroll.innerText = "🔽";
+            tombolScroll.style.background = "rgba(20, 20, 20, 0.8)";
+        }
+
+        // CUMA MEMUNCULKAN POP-UP SAJA
+        function kejutanKopi() {
+            alert("Kalau suka bisa kali buat kopi-kopt wae mah\n\nBCA 3140135291 - Aan Sunandar\n🤣🤣");
         }
     </script>
 </body>
