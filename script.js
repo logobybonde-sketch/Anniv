@@ -1,7 +1,17 @@
 function openLove(){
 
-document.getElementById("opening").style.display="none";
+document.getElementById("opening").style.display = "none";
 
-document.getElementById("message").style.display="block";
+let message = document.getElementById("message");
+
+message.style.display = "block";
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
 
 }
