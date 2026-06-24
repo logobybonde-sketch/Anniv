@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Anniversary</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <title>Happy Anniversary Istriku ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -144,46 +144,53 @@
         .message p {
             line-height: 1.9;
             font-size: 1.05rem;
-            margin: 20px 0;
+            margin: 25px 0;
             color: #e0e0e0;
+            padding: 0 15px;
+            text-align: center;
+        }
+
+        /* ===== STYLE RANDOM SCRAPBOOK / COLLAGE FOTO ===== */
+        .random-collage {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 35px 0;
             padding: 0 10px;
         }
 
-        /* ===== STYLE GRID FOTO DI TENGAH TEKS ===== */
-        .inline-gallery {
-            margin: 30px 0;
-            padding: 0 10px;
-        }
-
-        .inline-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            text-align: left;
-            border-left: 3px solid var(--primary-color);
-            padding-left: 10px;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 10px;
-        }
-
-        .photo-grid img {
-            width: 100%;
-            height: 135px;
+        /* Bikin frame foto ala polaroid/kliping random */
+        .random-collage img {
+            width: 42%;
+            min-width: 130px;
+            height: 150px;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease, filter 0.3s ease;
-            filter: brightness(0.9);
+            border-radius: 8px;
+            border: 4px solid #fff; /* Bingkai putih estetik kontras dengan background hitam */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease, z-index 0.3s;
         }
 
-        .photo-grid img:hover {
-            transform: scale(1.03);
-            filter: brightness(1.1);
+        /* Trik CSS posisi kemiringan acak (random rotate) */
+        .random-collage img:nth-child(odd) {
+            transform: rotate(-4deg) translateY(5px);
+        }
+        .random-collage img:nth-child(even) {
+            transform: rotate(5deg) translateY(-5px);
+        }
+        .random-collage img:nth-child(3n) {
+            transform: rotate(3deg) scale(1.02);
+        }
+        .random-collage img:nth-child(4n) {
+            transform: rotate(-6deg);
+        }
+
+        /* Efek interaktif pas di-hover/sentuh */
+        .random-collage img:hover {
+            transform: scale(1.1) rotate(0deg);
+            z-index: 10;
+            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.4);
         }
 
         .footer-note {
@@ -216,34 +223,28 @@
 
             <div class="message">
                 <p>Hallo Istriku,</p>
-
+                
                 <i>I don't know how to explain how lucky I am to have you in my life.</i></p>
                 
                 <p>Thank you for being my home, my safe place, and my favorite person.</p>
                 
                 <p>Kamu tuh bukan cuma istri aku, tapi partner hidup yang selalu nemenin aku. Tempat cerita, tempat balik, tempat dimana aku bisa jadi diri sendiri ❤️</p>
 
-                <div class="inline-gallery">
-                    <div class="inline-title">Inget pas jaman ini? (Our Beginnings)</div>
-                    <div class="photo-grid">
-                        <img src="./pacaran1.jpg" alt="Pacaran 1">
-                        <img src="./pacaran2.jpg" alt="Pacaran 2">
-                        <img src="./pacaran3.jpg" alt="Pacaran 3">
-                    </div>
+                <div class="random-collage">
+                    <img src="./pacaran1.jpg" alt="Momen Kita">
+                    <img src="./pacaran2.jpg" alt="Momen Kita">
+                    <img src="./pacaran3.jpg" alt="Momen Kita">
                 </div>
                 
                 <p>Kita udah banyak ngelewatin segala hal. Ada ketawa, ada capek, ada salah paham, aya drama jelasna mah nya Yang 😂</p>
                 
                 <p>Kadang kita suka keras kepala, walaupun sebenernya yang keras kepala itu aku. Kadang kita masih meributkan hal yang gak penting, jelas kalau itu kamu kan? 🤣 tapi at the end... Kita masih tetap memilih bertahan satu sama lain.</p>
 
-                <div class="inline-gallery">
-                    <div class="inline-title">Satu langkah lebih dekat...</div>
-                    <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr);">
-                        <img src="./prewed1.jpg" alt="Prewed 1">
-                        <img src="./prewed2.jpg" alt="Prewed 2">
-                        <img src="./prewed3.jpg" alt="Prewed 3">
-                        <img src="./prewed4.jpg" alt="Prewed 4">
-                    </div>
+                <div class="random-collage">
+                    <img src="./prewed1.jpg" alt="Momen Kita">
+                    <img src="./prewed2.jpg" alt="Momen Kita">
+                    <img src="./prewed3.jpg" alt="Momen Kita">
+                    <img src="./prewed4.jpg" alt="Momen Kita">
                 </div>
                 
                 <p>I know I'm not perfect. Kadang ngeselin, kadang gak peka, kadang loba tingkah, kadang tara mandi (btw, tara mandi teh biar hemat air bos). 🤫</p>
@@ -251,13 +252,10 @@
                 <p>But one thing is sure...<br>
                 I will always love you and choose you. Not only today, but everyday.</p>
 
-                <div class="inline-gallery">
-                    <div class="inline-title">Hari terbaik dalam hidupku (Our Big Day)</div>
-                    <div class="photo-grid">
-                        <img src="./wedding1.jpg" alt="Wedding 1">
-                        <img src="./wedding2.jpg" alt="Wedding 2">
-                        <img src="./wedding3.jpg" alt="Wedding 3">
-                    </div>
+                <div class="random-collage">
+                    <img src="./wedding1.jpg" alt="Momen Kita">
+                    <img src="./wedding2.jpg" alt="Momen Kita">
+                    <img src="./wedding3.jpg" alt="Momen Kita">
                 </div>
                 
                 <p>Someday kita bakal balik lagi liat perjalanan ini, terus ketawa dan ngomong:<br>
@@ -267,20 +265,17 @@
                 Thank you for being my wife, my best friend, and my forever partner.<br>
                 Thank you for everything, Mama.</p>
 
-                <div class="inline-gallery">
-                    <div class="inline-title">Dan perjalanan kita masih panjang... ✨</div>
-                    <div class="photo-grid">
-                        <img src="./after1.jpg" alt="After Nikah 1">
-                        <img src="./after2.jpg" alt="After Nikah 2">
-                        <img src="./after3.jpg" alt="After Nikah 3">
-                    </div>
+                <div class="random-collage">
+                    <img src="./after1.jpg" alt="Momen Kita">
+                    <img src="./after2.jpg" alt="Momen Kita">
+                    <img src="./after3.jpg" alt="Momen Kita">
                 </div>
             </div>
 
             <div class="footer-note">
                 <p>Love you Mama ❤️</p>
                 <p style="font-size: 1.1rem; font-family: 'Quicksand', sans-serif; color: var(--text-muted);">
-                    Let's take another roller coaster together 🎢
+                    Let's take another roller coaster together
                 </p>
             </div>
 
