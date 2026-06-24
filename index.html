@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>❤️ Happy Anniversary ❤️</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #ff4d6d; /* Warna pink/merah yang lebih terang biar pop di background hitam */
-            --bg-color: #121212;      /* Hitam pekat untuk background utama */
-            --card-bg: #1e1e1e;       /* Hitam abu-abu sedikit terang untuk kotak konten */
-            --text-color: #f8f9fa;     /* Putih soft untuk teks utama */
-            --text-muted: #a0a0a0;     /* Abu-abu untuk teks sekunder/tanggal */
+            --primary-color: #ff4d6d; 
+            --bg-color: #121212;      
+            --card-bg: #1e1e1e;       
+            --text-color: #f8f9fa;     
+            --text-muted: #a0a0a0;     
         }
 
         body {
@@ -72,14 +71,13 @@
             box-shadow: 0 10px 25px rgba(255, 77, 109, 0.6);
         }
 
-        /* Menghilangkan cover setelah diklik */
         .cover-screen.fade-out {
             opacity: 0;
             transform: translateY(-100vh);
             pointer-events: none;
         }
 
-        /* ===== KONTEN UTAMA (SURAT & FOTO) ===== */
+        /* ===== KONTEN UTAMA ===== */
         .container {
             width: 100%;
             max-width: 600px;
@@ -95,7 +93,6 @@
             transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
         }
 
-        /* Muncul pelan-pelan setelah tombol diklik */
         .container.show {
             opacity: 1;
             transform: scale(1);
@@ -185,22 +182,18 @@
 </head>
 <body>
 
-    <!-- HALAMAN DEPAN / TOMBOL SURPRISE -->
     <div class="cover-screen" id="coverScreen">
         <h2>Untuk Istriku</h2>
-        <button class="open-btn" onclick="bukaSurat()">Klik Disini</button>
+        <button class="open-btn" onclick="bukaSurat()">Klik Disini!</button>
     </div>
 
-    <!-- KONTEN UTAMA -->
     <div class="container" id="mainContainer">
-        <!-- Foto Utama (ayu.jpg) -->
         <img src="./ayu.jpg" alt="Foto Utama Ayu" class="header-img">
 
         <div class="content">
             <h1>❤️ Happy Anniversary ❤️</h1>
             <p class="date">27 Juni 2026</p>
 
-            <!-- Isi Surat -->
             <div class="message">
                 <p>Hallo Istriku,</p>
                 
@@ -227,50 +220,42 @@
                 Thank you for everything, Mama.</p>
             </div>
 
-            <!-- ================= GALERI FOTO ================= -->
-            
-            <!-- 1. Jaman Pacaran (3 Foto) -->
             <div class="gallery-section">
-                <div class="gallery-title">Our Beginnings (Jaman Pacaran)</div>
+                <div class="gallery-title">Our Beginnings</div>
                 <div class="photo-grid">
-                    <img src="./images/pacaran1.jpg" alt="Pacaran 1">
-                    <img src="./images/pacaran2.jpg" alt="Pacaran 2">
-                    <img src="./images/pacaran3.jpg" alt="Pacaran 3">
+                    <img src="./pacaran1.jpg" alt="Pacaran 1">
+                    <img src="./pacaran2.jpg" alt="Pacaran 2">
+                    <img src="./pacaran3.jpg" alt="Pacaran 3">
                 </div>
             </div>
 
-            <!-- 2. Prewedding (4 Foto) -->
             <div class="gallery-section">
-                <div class="gallery-title">The Next Step (Prewedding)</div>
+                <div class="gallery-title">The Next Step</div>
                 <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr);">
-                    <img src="./images/prewed1.jpg" alt="Prewed 1">
-                    <img src="./images/prewed2.jpg" alt="Prewed 2">
-                    <img src="./images/prewed3.jpg" alt="Prewed 3">
-                    <img src="./images/prewed4.jpg" alt="Prewed 4">
+                    <img src="./prewed1.jpg" alt="Prewed 1">
+                    <img src="./prewed2.jpg" alt="Prewed 2">
+                    <img src="./prewed3.jpg" alt="Prewed 3">
+                    <img src="./prewed4.jpg" alt="Prewed 4">
                 </div>
             </div>
 
-            <!-- 3. Wedding (3 Foto) -->
             <div class="gallery-section">
-                <div class="gallery-title">Our Big Day (Wedding)</div>
+                <div class="gallery-title">Our Big Day</div>
                 <div class="photo-grid">
-                    <img src="./images/wedding1.jpg" alt="Wedding 1">
-                    <img src="./images/wedding2.jpg" alt="Wedding 2">
-                    <img src="./images/wedding3.jpg" alt="Wedding 3">
+                    <img src="./wedding1.jpg" alt="Wedding 1">
+                    <img src="./wedding2.jpg" alt="Wedding 2">
+                    <img src="./wedding3.jpg" alt="Wedding 3">
                 </div>
             </div>
 
-            <!-- 4. After Nikah (3 Foto) -->
             <div class="gallery-section">
-                <div class="gallery-title">Happily Ever After (After Nikah)</div>
+                <div class="gallery-title">Happily Ever After</div>
                 <div class="photo-grid">
-                    <img src="./images/after1.jpg" alt="After Nikah 1">
-                    <img src="./images/after2.jpg" alt="After Nikah 2">
-                    <img src="./images/after3.jpg" alt="After Nikah 3">
+                    <img src="./after1.jpg" alt="After Nikah 1">
+                    <img src="./after2.jpg" alt="After Nikah 2">
+                    <img src="./after3.jpg" alt="After Nikah 3">
                 </div>
             </div>
-
-            <!-- =============================================== -->
 
             <div class="footer-note">
                 <p>Love you Mama ❤️</p>
@@ -282,7 +267,6 @@
         </div>
     </div>
 
-    <!-- LOGIK JAVASCRIPT UNTUK MEMBUKA KONTEN -->
     <script>
         function bukaSurat() {
             document.getElementById('coverScreen').classList.add('fade-out');
